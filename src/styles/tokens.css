@@ -1,0 +1,59 @@
+:root {
+  /* Surfaces */
+  --ground: #edeef0;
+  --surface: #ffffff;
+  --surface-2: #f5f6f7;
+  --plate: #e2e4e8;
+  --line: #d6d9de;
+  --line-soft: #e6e8eb;
+
+  /* Ink */
+  --ink: #131418;
+  --ink-2: #3a3d45;
+  --muted: #5b5f68;
+  --faint: #8a8e97;
+
+  /* Brand */
+  --accent: #ff5b1f;
+  --accent-soft: #ffe8db;
+  --accent-ink: #9a3412;
+
+  /* Feedback */
+  --ok: #1e9e5a;
+  --ok-soft: #d7f2e1;
+  --ok-ink: #14532d;
+  --warn-soft: #fff4dc;
+  --warn-ink: #7a4a06;
+  --err: #b42318;
+  --err-soft: #fef3f2;
+  --err-line: #f4b4aa;
+  --err-ink: #7a1a10;
+
+  /* Status (paired with glyphs, never color alone) */
+  --st-new-bg: #ffe8db;
+  --st-new-fg: #9a3412;
+  --st-printing-bg: #dce7ff;
+  --st-printing-fg: #1d3fa6;
+  --st-ready-bg: #d7f2e1;
+  --st-ready-fg: #14532d;
+  --st-completed-bg: #e6e7ea;
+  --st-completed-fg: #3a3d45;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque', 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Shape — deliberately modest radii */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r: 12px;
+  --r-lg: 18px;
+
+  --gutter: clamp(16px, 4vw, 40px);
+  --maxw: 1320px;
+  --header-h: 72px;
+
+  --shadow-pop: 0 12px 32px rgba(19, 20, 24, 0.16);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}

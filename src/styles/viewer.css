@@ -1,0 +1,268 @@
+.viewer {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  min-height: 240px;
+  isolation: isolate;
+}
+.viewer__stage {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  touch-action: none;
+}
+.viewer__stage:active {
+  cursor: grabbing;
+}
+.viewer__stage:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 3px var(--ink);
+  border-radius: inherit;
+}
+.viewer__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.viewer__badges {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  pointer-events: none;
+}
+.viewer__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: var(--r-xs);
+  background: rgba(255, 255, 255, 0.85);
+  font: 500 11px var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.viewer__badge--temp {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  border: 1px dashed #f2a47e;
+}
+.viewer__live {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px rgba(30, 158, 90, 0.2);
+}
+.viewer__overlay {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+}
+.viewer__hint {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 78px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ink-2);
+  pointer-events: none;
+  animation: fade-in 0.6s 0.4s both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.viewer__toolbar {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px;
+  border-radius: var(--r);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(19, 20, 24, 0.08), 0 8px 24px rgba(19, 20, 24, 0.1);
+}
+.viewer--compact .viewer__toolbar {
+  left: auto;
+  right: 12px;
+  bottom: 12px;
+  transform: none;
+}
+.tool {
+  min-width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: 600 14px var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tool:hover {
+  background: var(--surface-2);
+}
+.tool--wide span {
+  padding-right: 6px;
+}
+.tool-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--line);
+  margin: 0 4px;
+}
+.tool-readout {
+  min-width: 52px;
+  text-align: center;
+  font: 500 13px var(--font-mono);
+  color: var(--ink-2);
+}
+.viewer__state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 15px;
+}
+.viewer__state strong {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+}
+.viewer__state-sub {
+  max-width: 340px;
+}
+.viewer__state-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r);
+  background: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--err);
+}
+
+/* Part legend on the product viewer. */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 14px 6px 10px;
+  border: 0;
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.legend__item:hover {
+  background: #fff;
+}
+.legend__item[aria-pressed='true'] {
+  background: var(--ink);
+  color: #fff;
+}
+.legend__item strong {
+  font-weight: 600;
+}
+.legend__label {
+  opacity: 0.7;
+}
+.legend__swatch {
+  border-radius: var(--r-xs);
+  box-shadow: inset 0 0 0 1px rgba(19, 20, 24, 0.25), 0 0 0 1.5px #fff;
+}
+
+/* Loader: a model "printing" layer by layer. */
+.layer-loader {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 4px;
+}
+.layer-loader span {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ink);
+  opacity: 0.12;
+  animation: layer 1.6s ease-in-out infinite;
+}
+@keyframes layer {
+  0%,
+  15% {
+    opacity: 0.12;
+  }
+  35%,
+  80% {
+    opacity: 0.85;
+    background: var(--accent);
+  }
+  100% {
+    opacity: 0.12;
+  }
+}
+
+@media (max-width: 640px) {
+  .viewer__overlay {
+    left: 12px;
+    right: auto;
+    top: 52px;
+  }
+  .legend {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .legend__item {
+    padding: 4px 10px 4px 6px;
+    font-size: 13px;
+  }
+  .legend__label {
+    display: none;
+  }
+  .viewer__hint {
+    display: none;
+  }
+  .viewer__toolbar {
+    left: auto;
+    right: 12px;
+    transform: none;
+  }
+  .viewer__toolbar .tool-readout,
+  .viewer__toolbar .tool-sep {
+    display: none;
+  }
+  .tool--wide span {
+    display: none;
+  }
+}
