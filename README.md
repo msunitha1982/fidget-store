@@ -14,8 +14,22 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
+### See the latest changes
+
+From the `fidget-store` folder, after new commits are pushed:
+
+```bash
+npm run update     # = git pull && npm install
+npm run dev        # then open http://localhost:5173
+```
+
+If `npm run dev` is already running, `git pull` alone is enough — the open page reloads
+by itself (restart `npm run dev` only if `package.json` changed). `git log --oneline -5`
+lists the most recent changes.
+
 | Command | What it does |
 | --- | --- |
+| `npm run update` | Get the latest code and dependencies |
 | `npm run dev` | Dev server with hot reload |
 | `npm run build` | Typecheck + production build into `dist/` |
 | `npm run preview` | Serve the production build |

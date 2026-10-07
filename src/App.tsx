@@ -8,6 +8,7 @@ import { AdminOrdersPage } from './pages/admin/AdminOrdersPage';
 import { AdminProductEditorPage } from './pages/admin/AdminProductEditorPage';
 import { AdminProductsPage } from './pages/admin/AdminProductsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { RouteError } from './pages/RouteError';
 import { CartPage } from './pages/shop/CartPage';
 import { CheckoutPage } from './pages/shop/CheckoutPage';
 import { ConfirmationPage } from './pages/shop/ConfirmationPage';
@@ -26,6 +27,7 @@ function Root() {
 const router = createBrowserRouter([
   {
     element: <Root />,
+    errorElement: <RouteError />,
     children: [
       {
         element: <ShopLayout />,

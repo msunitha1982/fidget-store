@@ -8,7 +8,11 @@ import { ConfigText } from './Placeholder';
 
 export function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  // Block body on purpose: newer browsers return a Promise from scrollTo, and an effect
+  // must never return anything but a cleanup function.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return null;
 }
 

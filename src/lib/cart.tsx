@@ -43,7 +43,9 @@ const CartContext = createContext<CartApi | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>(() => readJSON<CartLine[]>(KEY, []));
 
-  useEffect(() => writeJSON(KEY, lines), [lines]);
+  useEffect(() => {
+    writeJSON(KEY, lines);
+  }, [lines]);
 
   // Keep several tabs in sync.
   useEffect(() => {

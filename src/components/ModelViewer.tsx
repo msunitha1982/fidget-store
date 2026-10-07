@@ -198,8 +198,12 @@ export function ModelViewer({ model, partColors, highlightPartIds, label, autoRo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, attempt]);
 
-  useEffect(() => stageRef.current?.setColors(partColors), [partColors]);
-  useEffect(() => stageRef.current?.setHighlight(highlightPartIds ?? null), [highlightPartIds]);
+  useEffect(() => {
+    stageRef.current?.setColors(partColors);
+  }, [partColors]);
+  useEffect(() => {
+    stageRef.current?.setHighlight(highlightPartIds ?? null);
+  }, [highlightPartIds]);
 
   const ctrl = (fn: (c: Controller) => void) => () => ctrlRef.current && fn(ctrlRef.current);
   const STEP = Math.PI / 6;
