@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../lib/cart';
 import { formatMoney } from '../lib/format';
@@ -9,12 +8,12 @@ import { ModelThumb } from './ModelThumb';
 import { useToast } from './Toast';
 
 export function ProductCard({ product }: { product: Product }) {
-  const [selections, setSelections] = useState(() => defaultSelections(product));
+  // Colors are only chosen on the product page; cards show the default combination.
+  const selections = defaultSelections(product);
   const { add } = useCart();
   const toast = useToast();
   const first = product.optionGroups[0];
   const href = `/products/${product.slug}`;
-  const colorCount = product.optionGroups.reduce((n, g) => n * Math.max(1, g.colors.length), 1);
   const partsLine =
     product.optionGroups.length > 1
       ? product.optionGroups
@@ -31,7 +30,6 @@ export function ProductCard({ product }: { product: Product }) {
     <article className="card">
       <Link to={href} className="card__media" aria-label={`${product.name}, ${formatMoney(product.price)} — choose colors`}>
         <ModelThumb model={product.model} partColors={partColors(product, selections)} />
-        <span className="card__tag mono">{colorCount} combos</span>
       </Link>
       <div className="card__body">
         <div className="card__row">
@@ -40,26 +38,7 @@ export function ProductCard({ product }: { product: Product }) {
           </h3>
           <span className="card__price mono">{formatMoney(product.price)}</span>
         </div>
-        {first && (
-          <div className="card__row card__row--dots">
-            <div className="dots" role="group" aria-label={`Preview ${product.name} colors`}>
-              {first.colors.map((c) => (
-                <button
-                  key={c.id}
-                  type="button"
-                  className="dot"
-                  aria-pressed={selections[first.id] === c.id}
-                  aria-label={`Preview in ${c.name}`}
-                  title={c.name}
-                  onClick={() => setSelections((s) => ({ ...s, [first.id]: c.id }))}
-                >
-                  <span style={{ background: c.hex }} />
-                </button>
-              ))}
-            </div>
-            <span className="card__parts">{partsLine}</span>
-          </div>
-        )}
+        {first && <p className="card__parts">{partsLine}</p>}
         <div className="card__actions">
           <Link to={href} className="btn btn--sm card__cta">
             Choose colors <Icon name="arrowRight" size={16} />

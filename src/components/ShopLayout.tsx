@@ -5,7 +5,6 @@ import { useCart } from '../lib/cart';
 import { Icon } from './Icon';
 import { ThemeToggle } from './ThemeToggle';
 import { Logo } from './Logo';
-import { ConfigText } from './Placeholder';
 
 export function ScrollToTop() {
   const { pathname } = useLocation();
@@ -65,18 +64,9 @@ export function ShopLayout() {
         <Outlet />
       </main>
       <footer className="site-footer">
-        <div className="container site-footer__inner">
-          <Logo size={22} />
-          <span>
-            Questions? <ConfigText value={site.contact} />
-          </span>
-          <span>
-            © {new Date().getFullYear()} <ConfigText value={site.legalName} />
-          </span>
-          <Link to="/admin" className="site-footer__admin">
-            Owner admin
-          </Link>
-        </div>
+        <Link to="/admin" className="admin-link">
+          Admin Dashboard
+        </Link>
       </footer>
     </div>
   );

@@ -3,10 +3,18 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { Icon } from '../../components/Icon';
 import { Logo } from '../../components/Logo';
 import { ThemeToggle } from '../../components/ThemeToggle';
+import { isUnlocked, lock } from '../../lib/adminAuth';
 import { adminListOrders, resetDemoData } from '../../lib/api';
 import { useAsync } from '../../lib/useAsync';
+import { AdminLogin } from './AdminLogin';
 
 export function AdminLayout() {
+  const [unlocked, setUnlocked] = useState(isUnlocked);
+  if (!unlocked) return <AdminLogin onUnlock={() => setUnlocked(true)} />;
+  return <AdminShell onLock={() => setUnlocked(false)} />;
+}
+
+function AdminShell({ onLock }: { onLock: () => void }) {
   const orders = useAsync(adminListOrders, []);
   const newCount = orders.data?.filter((o) => o.status === 'NEW').length ?? 0;
   const [confirmReset, setConfirmReset] = useState(false);
@@ -29,6 +37,9 @@ export function AdminLayout() {
           <NavLink to="/admin/products" className="admin-nav__link">
             <Icon name="cube" /> Products
           </NavLink>
+          <NavLink to="/admin/settings" className="admin-nav__link">
+            <Icon name="settings" /> Settings
+          </NavLink>
         </nav>
         <div className="admin-side__foot">
           <span className="admin-side__row">
@@ -37,9 +48,19 @@ export function AdminLayout() {
             </Link>
             <ThemeToggle />
           </span>
+          <button
+            type="button"
+            className="admin-nav__link admin-nav__btn"
+            onClick={() => {
+              lock();
+              onLock();
+            }}
+          >
+            <Icon name="lock" /> Lock dashboard
+          </button>
           <div className="admin-side__proto">
             <strong>Prototype</strong>
-            <span>No sign-in yet. Data is stored in this browser only.</span>
+            <span>Data is stored in this browser only.</span>
             {confirmReset ? (
               <span className="admin-side__confirm">
                 <button

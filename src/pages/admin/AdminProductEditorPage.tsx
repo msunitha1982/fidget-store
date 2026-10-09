@@ -314,7 +314,6 @@ function ProductEditor({ initial, isNew }: { initial: Product; isNew: boolean })
                 placeholder="One or two sentences about it."
                 onChange={(e) => edit({ description: e.target.value })}
               />
-              <p className="field__help">Shown under the price. Short is best.</p>
             </div>
           </Section>
 
@@ -356,7 +355,7 @@ function ProductEditor({ initial, isNew }: { initial: Product; isNew: boolean })
                     <Icon name="cube" size={20} />
                     {draft.model.kind === 'placeholder' ? (
                       <>
-                        {PLACEHOLDER_LABELS[draft.model.shape]} <span className="tag tag--temp">Temporary placeholder</span>
+                        {PLACEHOLDER_LABELS[draft.model.shape]}
                       </>
                     ) : (
                       <>STL model · {draft.model.files.length === 1 ? '1 file' : `${draft.model.files.length} files`}</>
@@ -492,7 +491,7 @@ function ProductEditor({ initial, isNew }: { initial: Product; isNew: boolean })
               </h2>
               <span className={`tag ${draft.published ? 'tag--ok' : 'tag--muted'}`}>{draft.published ? 'Shown' : 'Hidden'}</span>
             </div>
-            <ModelViewer model={draft.model} partColors={colors} highlightPartIds={highlight} label={draft.name || 'New product'} compact className="preview-card__viewer" />
+            <ModelViewer model={draft.model} partColors={colors} highlightPartIds={highlight} label={draft.name || 'New product'} compact badges={false} className="preview-card__viewer" />
             <div className="preview-card__title">
               <strong className={draft.name ? '' : 'muted'}>{draft.name || 'Product name'}</strong>
               <span className="mono">{price !== null ? formatMoney(price) : '$—'}</span>
@@ -732,7 +731,6 @@ function GroupEditor(props: {
           <div className="color-adder">
             {unused.length > 0 && (
               <div className="color-adder__library">
-                <span className="small muted">Your colors — click to add</span>
                 <span className="color-adder__swatches">
                   {unused.map((c) => (
                     <button key={c.hex} type="button" className="lib-color" onClick={() => addColor(c)}>

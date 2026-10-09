@@ -5,6 +5,7 @@
 import { seedOrders, seedProducts } from '../data/seed';
 import type { CartLine, CustomerInfo, Order, OrderLine, OrderStatus, Product } from '../types';
 import { clearFiles } from './fileStore';
+import { sendOwnerEmail } from './ownerEmail';
 import { describeChoices, normalizeSelections, partColors } from './product';
 import { readJSON, removeKey, writeJSON } from './storage';
 
@@ -118,20 +119,32 @@ export async function submitOrder(input: SubmitOrderInput): Promise<Order> {
     history: [{ status: 'NEW', at: now }],
     ownerNotifiedAt: null,
   };
-  order.ownerNotifiedAt = notifyOwner(order);
+  // Save first: the order must never be lost because the email didn't go out.
   saveOrders([order, ...orders]);
-  return order;
+  return emailOwner(order);
 }
 
-/** Placeholder for the owner email. A backend would send a real email here. */
-function notifyOwner(order: Order): string {
-  const lines = order.lines.map(
-    (l) => `  ×${l.quantity} ${l.productName} — ${l.choices.map((c) => `${c.groupLabel}: ${c.colorName}`).join(', ')}`,
-  );
-  console.info(
-    `[mock email to owner] New order #${order.number} from ${order.customer.name}\n${lines.join('\n')}\nCollect in cash: $${(order.total / 100).toFixed(2)}`,
-  );
-  return new Date().toISOString();
+const adminOrderUrl = (n: number) => `${location.origin}/admin/orders/${n}`;
+
+/** Emails the owner and records the outcome on the order. Never throws. */
+async function emailOwner(order: Order): Promise<Order> {
+  let patch: Pick<Order, 'ownerNotifiedAt' | 'notifyError'>;
+  try {
+    await sendOwnerEmail(order, adminOrderUrl(order.number));
+    patch = { ownerNotifiedAt: new Date().toISOString(), notifyError: null };
+  } catch (e) {
+    patch = { ownerNotifiedAt: null, notifyError: (e as Error).message };
+  }
+  const orders = loadOrders().map((o) => (o.number === order.number ? { ...o, ...patch } : o));
+  saveOrders(orders);
+  return { ...order, ...patch };
+}
+
+/** Admin: try the owner email again (e.g. after the first one failed). */
+export async function adminResendOwnerEmail(number: number): Promise<Order> {
+  const o = loadOrders().find((x) => x.number === number);
+  if (!o) throw new NotFoundError('Order not found');
+  return emailOwner(o);
 }
 
 /** Public lookup used by the confirmation page. */

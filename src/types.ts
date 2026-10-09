@@ -121,4 +121,6 @@ export interface Order {
   total: Cents;
   history: StatusChange[];
   ownerNotifiedAt: string | null;
+  /** Why the owner email failed, if it did (the admin can resend). */
+  notifyError?: string | null;
 }

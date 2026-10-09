@@ -107,6 +107,27 @@ Geometry comes from one function, `three/loadModel.ts`, driven by `product.model
 - How multi-part models will be split is still open — the UI only depends on named
   parts and which option group colors them.
 
+## Order emails
+
+Every submitted order is emailed to the owner (`ownerEmail` in `src/config/site.ts`,
+currently `1071195@lwsd.org`) with the order number, customer, each item with its colors,
+pieces to print, the cash total and a link to the order in the admin. Replying to the email
+replies to the customer.
+
+The email is sent from the customer's browser through [FormSubmit](https://formsubmit.co)
+(free, no account). **One-time setup:** the first order triggers an "Activate" email from
+FormSubmit to the owner address — click it once; after that every order arrives. If an email
+fails, the order is still saved and the admin order page shows **Resend email**.
+
+## Admin password
+
+`/admin` asks for a password — **`interesting`** to start. Change it in **Admin → Settings**.
+The dashboard stays unlocked until the tab is closed or **Lock dashboard** is pressed.
+
+This is a prototype gate, not real security: it runs in the browser, so someone with the
+developer tools can get past it, and a changed password only applies to that browser.
+Real protection needs a server-side login.
+
 ## What's mocked / not built (on purpose)
 
 - **Backend:** `lib/api.ts` keeps products and orders in localStorage with a small delay.

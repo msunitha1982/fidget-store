@@ -17,6 +17,8 @@ export interface ModelViewerProps {
   autoRotate?: boolean;
   /** Smaller controls for tight spaces (mobile, admin preview). */
   compact?: boolean;
+  /** Show the "Live 3D" / "Placeholder model" labels. */
+  badges?: boolean;
   /** Overlays rendered on top of the canvas (e.g. a part legend). */
   children?: ReactNode;
   className?: string;
@@ -36,7 +38,7 @@ const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion:
  * Live WebGL product preview: orbit, zoom, reset, real-time part colors.
  * Geometry comes from `loadModel`, so placeholder shapes and real STL files behave the same.
  */
-export function ModelViewer({ model, partColors, highlightPartIds, label, autoRotate = true, compact = false, children, className }: ModelViewerProps) {
+export function ModelViewer({ model, partColors, highlightPartIds, label, autoRotate = true, compact = false, badges = true, children, className }: ModelViewerProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<Stage | null>(null);
   const ctrlRef = useRef<Controller | null>(null);
@@ -243,6 +245,7 @@ export function ModelViewer({ model, partColors, highlightPartIds, label, autoRo
         onKeyDown={onKeyDown}
       />
 
+      {badges && (
       <div className="viewer__badges">
         <span className="viewer__badge">
           <span className="viewer__live" aria-hidden="true" />
@@ -254,6 +257,7 @@ export function ModelViewer({ model, partColors, highlightPartIds, label, autoRo
           </span>
         )}
       </div>
+      )}
 
       {children && ready && <div className="viewer__overlay">{children}</div>}
 

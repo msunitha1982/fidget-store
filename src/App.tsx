@@ -7,6 +7,7 @@ import { AdminOrderPage } from './pages/admin/AdminOrderPage';
 import { AdminOrdersPage } from './pages/admin/AdminOrdersPage';
 import { AdminProductEditorPage } from './pages/admin/AdminProductEditorPage';
 import { AdminProductsPage } from './pages/admin/AdminProductsPage';
+import { AdminSettingsPage } from './pages/admin/AdminSettingsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { RouteError } from './pages/RouteError';
 import { CartPage } from './pages/shop/CartPage';
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
           { path: 'products', element: <AdminProductsPage /> },
           { path: 'products/new', element: <AdminProductEditorPage /> },
           { path: 'products/:id', element: <AdminProductEditorPage /> },
+          { path: 'settings', element: <AdminSettingsPage /> },
         ],
       },
     ],

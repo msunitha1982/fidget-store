@@ -15,6 +15,14 @@ export const site = {
   contact: '[Contact info]',
   legalName: '[Shop name]',
 
+  /**
+   * Every submitted order is emailed here. Sent from the customer's browser through
+   * FormSubmit (https://formsubmit.co) — no account needed. The very first email asks this
+   * address to click "Activate"; after that, orders arrive normally.
+   */
+  ownerEmail: '1071195@lwsd.org',
+  emailEndpoint: 'https://formsubmit.co/ajax/',
+
   /** Accepted model upload types in the admin. */
   modelFileTypes: '.stl',
   modelFileRules: '[Final rules for multi-part models]',

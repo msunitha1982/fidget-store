@@ -5,7 +5,8 @@ import { ModelThumb } from '../../components/ModelThumb';
 import { StatusBadge } from '../../components/StatusBadge';
 import { EmptyState, Skeleton } from '../../components/States';
 import { Swatch } from '../../components/Swatch';
-import { adminGetOrder, adminSetOrderStatus } from '../../lib/api';
+import { adminGetOrder, adminResendOwnerEmail, adminSetOrderStatus } from '../../lib/api';
+import { site } from '../../config/site';
 import { formatMoney, formatOrderNumber, formatWhen, plural } from '../../lib/format';
 import { nextStatus, orderPieces, prevStatus, STATUS_COPY } from '../../lib/orders';
 import { readJSON, writeJSON } from '../../lib/storage';
@@ -53,6 +54,11 @@ export function AdminOrderPage() {
   const move = async (s: OrderStatus) => {
     setBusy(true);
     await adminSetOrderStatus(o.number, s);
+    setBusy(false);
+  };
+  const resend = async () => {
+    setBusy(true);
+    await adminResendOwnerEmail(o.number);
     setBusy(false);
   };
   const togglePrinted = (i: number) => {
@@ -187,13 +193,21 @@ export function AdminOrderPage() {
               ))}
               {o.ownerNotifiedAt && (
                 <li>
-                  <span>
-                    Email sent to owner <span className="tag tag--muted">mock</span>
-                  </span>
+                  <span>Email sent to {site.ownerEmail}</span>
                   <span className="mono muted small">{formatWhen(o.ownerNotifiedAt)}</span>
                 </li>
               )}
             </ul>
+            {!o.ownerNotifiedAt && (
+              <div className="email-failed" role="status">
+                <span>
+                  <strong>The order email didn’t go out.</strong> {o.notifyError ?? 'It was not sent.'}
+                </span>
+                <button type="button" className="btn btn--sm" disabled={busy} onClick={resend}>
+                  <Icon name="mail" size={16} /> {busy ? 'Sending…' : 'Resend email'}
+                </button>
+              </div>
+            )}
           </section>
         </aside>
       </div>
