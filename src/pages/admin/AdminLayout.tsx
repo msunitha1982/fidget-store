@@ -17,7 +17,7 @@ export function AdminLayout() {
       </a>
       <aside className="admin-side">
         <Link to="/admin" className="admin-side__brand" aria-label="Admin home">
-          <Logo size={26} inverted />
+          <Logo size={26} />
           <span className="admin-side__tag mono">Admin</span>
         </Link>
         <nav className="admin-nav" aria-label="Admin">

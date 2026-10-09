@@ -1,59 +1,77 @@
+/*
+ * Palette: five pinks + black. White is the neutral page/card base.
+ * Secondary text is black at reduced opacity (still black, just lighter).
+ * Product filament colors (Blue, Green…) are data, not UI, and live in the catalog.
+ */
 :root {
+  --pink-1: #ee6969; /* strongest — primary actions, emphasis, NEW */
+  --pink-2: #f97c7c; /* hover of pink-1 */
+  --pink-3: #fdaaaa; /* PRINTING, dashed outlines, placeholders */
+  --pink-4: #f4c1c1; /* borders, warning fills */
+  --pink-5: #fde0e0; /* tinted surfaces, model backgrounds */
+  --black: #000;
+  --white: #fff;
+
   /* Surfaces */
-  --ground: #edeef0;
-  --surface: #ffffff;
-  --surface-2: #f5f6f7;
-  --plate: #e2e4e8;
-  --line: #d6d9de;
-  --line-soft: #e6e8eb;
+  --ground: var(--white);
+  --surface: var(--white);
+  --surface-2: var(--pink-5);
+  --plate: var(--pink-5);
+  --line: var(--pink-4);
+  --line-soft: var(--pink-5);
+  /* Form-control borders must reach 3:1 against white. */
+  --line-strong: rgba(0, 0, 0, 0.42);
 
   /* Ink */
-  --ink: #131418;
-  --ink-2: #3a3d45;
-  --muted: #5b5f68;
-  --faint: #8a8e97;
+  --ink: var(--black);
+  --ink-2: rgba(0, 0, 0, 0.8);
+  --muted: rgba(0, 0, 0, 0.62);
+  --faint: rgba(0, 0, 0, 0.5);
 
-  /* Brand */
-  --accent: #ff5b1f;
-  --accent-soft: #ffe8db;
-  --accent-ink: #9a3412;
+  /* Accent — text on pink-1 is black (6.2:1); white would be 3.4:1. */
+  --accent: var(--pink-1);
+  --accent-hover: var(--pink-2);
+  --accent-soft: var(--pink-5);
+  --accent-ink: var(--black);
 
-  /* Feedback */
-  --ok: #1e9e5a;
-  --ok-soft: #d7f2e1;
-  --ok-ink: #14532d;
-  --warn-soft: #fff4dc;
-  --warn-ink: #7a4a06;
-  --err: #b42318;
-  --err-soft: #fef3f2;
-  --err-line: #f4b4aa;
-  --err-ink: #7a1a10;
+  /* Feedback, all within the palette; icons + wording carry the meaning. */
+  --ok: var(--black);
+  --ok-soft: var(--pink-5);
+  --ok-ink: var(--black);
+  --warn-soft: var(--pink-5);
+  --warn-line: var(--pink-3);
+  --warn-ink: var(--black);
+  --err: var(--pink-1);
+  --err-soft: var(--pink-5);
+  --err-line: var(--pink-1);
+  --err-ink: var(--black);
 
-  /* Status (paired with glyphs, never color alone) */
-  --st-new-bg: #ffe8db;
-  --st-new-fg: #9a3412;
-  --st-printing-bg: #dce7ff;
-  --st-printing-fg: #1d3fa6;
-  --st-ready-bg: #d7f2e1;
-  --st-ready-fg: #14532d;
-  --st-completed-bg: #e6e7ea;
-  --st-completed-fg: #3a3d45;
+  /* Order status: four clearly different fills, plus a distinct glyph each. */
+  --st-new-bg: var(--pink-1);
+  --st-new-fg: var(--black);
+  --st-printing-bg: var(--pink-3);
+  --st-printing-fg: var(--black);
+  --st-ready-bg: var(--black);
+  --st-ready-fg: var(--white);
+  --st-completed-bg: var(--pink-5);
+  --st-completed-fg: var(--black);
 
-  /* Type */
-  --font-display: 'Bricolage Grotesque', 'Geist', system-ui, sans-serif;
-  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Type: SF Pro from the visitor's machine (Apple devices have it built in). */
+  --font-body: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'SF Pro Display', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* One family only — numbers use SF Pro's tabular figures instead of a mono font. */
+  --font-mono: var(--font-body);
 
-  /* Shape — deliberately modest radii */
+  /* Shape */
   --r-xs: 4px;
-  --r-sm: 8px;
-  --r: 12px;
-  --r-lg: 18px;
+  --r-sm: 6px;
+  --r: 8px;
+  --r-lg: 12px;
 
   --gutter: clamp(16px, 4vw, 40px);
-  --maxw: 1320px;
-  --header-h: 72px;
+  --maxw: 1240px;
+  --header-h: 64px;
 
-  --shadow-pop: 0 12px 32px rgba(19, 20, 24, 0.16);
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.12);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }

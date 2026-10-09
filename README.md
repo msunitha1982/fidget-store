@@ -37,6 +37,10 @@ lists the most recent changes.
 
 Stack: Vite, React 18, TypeScript, React Router, Three.js. No backend yet.
 
+Look: five pinks (`#ee6969` → `#fde0e0`) plus black on white, defined once in
+`src/styles/tokens.css`. Font is SF Pro from the visitor's machine (built into Apple
+devices); other systems fall back to their own system font.
+
 ## Pages
 
 | Route | Page |

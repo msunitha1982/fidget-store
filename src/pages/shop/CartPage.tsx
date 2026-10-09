@@ -181,7 +181,7 @@ function EmptyBoxArt() {
       <path
         d="M0 -62 L54 -31 L54 31 L0 62 L-54 31 L-54 -31Z M-54 -31 L0 0 L54 -31 M0 0 V62"
         fill="none"
-        stroke="#A5A9B1"
+        stroke="var(--accent)"
         strokeDasharray="8 8"
         strokeWidth="3"
         strokeLinejoin="round"
