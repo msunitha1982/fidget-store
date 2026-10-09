@@ -7,6 +7,15 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#ee6969" />
     <title>Fidget Store</title>
+    <script>
+      // Set the theme before first paint so dark mode doesn't flash white.
+      (function () {
+        var t = null;
+        try { t = JSON.parse(localStorage.getItem('fs.theme')); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

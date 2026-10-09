@@ -40,14 +40,14 @@
   height: 30px;
   padding: 0 10px;
   border-radius: var(--r-xs);
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--glass);
   font: 500 11px var(--font-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-2);
 }
 .viewer__badge--temp {
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   border: 1px dashed var(--accent);
 }
@@ -181,17 +181,17 @@
   padding: 6px 14px 6px 10px;
   border: 0;
   border-radius: var(--r);
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--glass);
   font-size: 14px;
   text-align: left;
   cursor: pointer;
 }
 .legend__item:hover {
-  background: #fff;
+  background: var(--surface);
 }
 .legend__item[aria-pressed='true'] {
-  background: var(--ink);
-  color: #fff;
+  background: var(--contrast);
+  color: var(--on-contrast);
 }
 .legend__item strong {
   font-weight: 600;
@@ -201,7 +201,7 @@
 }
 .legend__swatch {
   border-radius: var(--r-xs);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 0 0 1.5px #fff;
+  box-shadow: inset 0 0 0 1px var(--swatch-ring), 0 0 0 1.5px var(--surface);
 }
 
 /* Loader: a model "printing" layer by layer. */
@@ -214,7 +214,7 @@
 .layer-loader span {
   height: 8px;
   border-radius: 4px;
-  background: var(--ink);
+  background: var(--contrast);
   opacity: 0.12;
   animation: layer 1.6s ease-in-out infinite;
 }

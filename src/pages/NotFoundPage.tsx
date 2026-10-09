@@ -8,7 +8,7 @@ export function NotFoundPage() {
         title="This page doesn't exist"
         icon="info"
         action={
-          <Link to="/" className="btn">
+          <Link to="/shop" className="btn">
             Go to the shop
           </Link>
         }

@@ -35,7 +35,7 @@ export function CartPage() {
           title="Your order is empty"
           art={<EmptyBoxArt />}
           action={
-            <Link to="/" className="btn">
+            <Link to="/shop" className="btn">
               Browse fidgets
             </Link>
           }
@@ -69,7 +69,7 @@ export function CartPage() {
                 <CartLineRow key={rl.line.lineId} rl={rl} loading={status === 'loading' && !rl.product} />
               ))}
             </ul>
-            <Link to="/" className="link-btn">
+            <Link to="/shop" className="link-btn">
               <Icon name="plus" size={18} /> Add another fidget
             </Link>
           </div>

@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { site } from '../config/site';
 import { useCart } from '../lib/cart';
 import { Icon } from './Icon';
+import { ThemeToggle } from './ThemeToggle';
 import { Logo } from './Logo';
 import { ConfigText } from './Placeholder';
 
@@ -20,6 +21,8 @@ export function ShopLayout() {
   const { count } = useCart();
   const { pathname } = useLocation();
   const inCheckout = pathname.startsWith('/order/details');
+  // Product pages belong to the Shop tab.
+  const inShop = pathname.startsWith('/shop') || pathname.startsWith('/products');
 
   return (
     <div className="shop">
@@ -32,17 +35,21 @@ export function ShopLayout() {
             <Logo />
           </Link>
           {inCheckout ? (
-            <Link to="/order" className="link-btn">
-              <Icon name="arrowLeft" size={18} /> Back to your order
-            </Link>
+            <span className="site-nav">
+              <Link to="/order" className="link-btn">
+                <Icon name="arrowLeft" size={18} /> Back to your order
+              </Link>
+              <ThemeToggle />
+            </span>
           ) : (
             <nav className="site-nav" aria-label="Main">
               <NavLink to="/" end className="site-nav__link">
+                Home
+              </NavLink>
+              <NavLink to="/shop" className={() => `site-nav__link ${inShop ? 'active' : ''}`} aria-current={inShop ? 'page' : undefined}>
                 Shop
               </NavLink>
-              <Link to="/#how" className="site-nav__link site-nav__link--wide">
-                How ordering works
-              </Link>
+              <ThemeToggle />
               <NavLink to="/order" className="bag-btn" aria-label={`Your order, ${count} ${count === 1 ? 'item' : 'items'}`}>
                 <Icon name="bag" size={20} />
                 <span className="bag-btn__label">Order</span>

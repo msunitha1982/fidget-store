@@ -32,7 +32,7 @@ export function ConfirmationPage() {
           title="We couldn't find that order"
           icon="info"
           action={
-            <Link to="/" className="btn">
+            <Link to="/shop" className="btn">
               Back to the shop
             </Link>
           }
@@ -144,7 +144,7 @@ export function ConfirmationPage() {
       </section>
 
       <div className="center">
-        <Link to="/" className="btn btn--lg">
+        <Link to="/shop" className="btn btn--lg">
           Back to the shop
         </Link>
       </div>

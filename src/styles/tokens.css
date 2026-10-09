@@ -74,4 +74,70 @@
 
   --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.12);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Theme-aware roles (redefined for dark mode below). */
+  color-scheme: light;
+  --tint: var(--pink-5); /* light pink fills: hovers, sidebar, model background */
+  --tint-strong: var(--pink-4);
+  --tint-stronger: var(--pink-3);
+  --contrast: var(--black); /* solid "inverted" elements: Order button, toast, active tab */
+  --on-contrast: var(--white);
+  --on-contrast-muted: rgba(255, 255, 255, 0.78);
+  --on-contrast-line: rgba(255, 255, 255, 0.55);
+  --on-contrast-hover: rgba(255, 255, 255, 0.1);
+  --on-accent: var(--black); /* text on #ee6969 — black in both themes for contrast */
+  --hover: rgba(0, 0, 0, 0.06);
+  --glass: rgba(255, 255, 255, 0.9); /* labels floating over the model background */
+  --focus-ring: rgba(0, 0, 0, 0.14);
+  --disabled: rgba(0, 0, 0, 0.28);
+  --swatch-ring: rgba(0, 0, 0, 0.22); /* outline that keeps white/black swatches visible */
+}
+
+/*
+ * Dark mode: black ground, white text, the same five pinks as accents.
+ * Light pink fills become translucent #ee6969 so white text stays readable on them.
+ */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ground: var(--black);
+  --surface: var(--black);
+  --surface-2: rgba(238, 105, 105, 0.14);
+  --plate: rgba(238, 105, 105, 0.14);
+  --line: rgba(244, 193, 193, 0.3);
+  --line-soft: rgba(244, 193, 193, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.45);
+
+  --ink: var(--white);
+  --ink-2: rgba(255, 255, 255, 0.86);
+  --muted: rgba(255, 255, 255, 0.68);
+  --faint: rgba(255, 255, 255, 0.5);
+
+  --accent-soft: rgba(238, 105, 105, 0.16);
+  --ok: var(--white);
+  --ok-soft: rgba(238, 105, 105, 0.16);
+  --ok-ink: var(--white);
+  --warn-soft: rgba(238, 105, 105, 0.16);
+  --warn-ink: var(--white);
+  --err-soft: rgba(238, 105, 105, 0.16);
+  --err-ink: var(--white);
+
+  --st-ready-bg: var(--white);
+  --st-ready-fg: var(--black);
+  --st-completed-bg: rgba(238, 105, 105, 0.18);
+  --st-completed-fg: var(--white);
+
+  --tint: rgba(238, 105, 105, 0.14);
+  --tint-strong: rgba(238, 105, 105, 0.26);
+  --tint-stronger: rgba(238, 105, 105, 0.4);
+  --contrast: var(--white);
+  --on-contrast: var(--black);
+  --on-contrast-muted: rgba(0, 0, 0, 0.7);
+  --on-contrast-line: rgba(0, 0, 0, 0.45);
+  --on-contrast-hover: rgba(0, 0, 0, 0.08);
+  --hover: rgba(255, 255, 255, 0.1);
+  --glass: rgba(0, 0, 0, 0.72);
+  --focus-ring: rgba(255, 255, 255, 0.22);
+  --disabled: rgba(255, 255, 255, 0.3);
+  --swatch-ring: rgba(255, 255, 255, 0.35);
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.6);
 }

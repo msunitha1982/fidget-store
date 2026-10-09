@@ -33,7 +33,7 @@ export function CheckoutPage() {
           title="There's nothing to submit yet"
           icon="bag"
           action={
-            <Link to="/" className="btn">
+            <Link to="/shop" className="btn">
               Browse fidgets
             </Link>
           }

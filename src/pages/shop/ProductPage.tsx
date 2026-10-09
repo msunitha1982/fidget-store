@@ -30,7 +30,7 @@ export function ProductPage() {
             title="This fidget isn't available right now"
             icon="cube"
             action={
-              <Link to="/" className="btn">
+              <Link to="/shop" className="btn">
                 See all fidgets
               </Link>
             }
@@ -84,7 +84,7 @@ function ProductDetail({ product }: { product: Product }) {
 
   return (
     <div className="container product">
-      <Link to="/" className="link-btn product__back">
+      <Link to="/shop" className="link-btn product__back">
         <Icon name="arrowLeft" size={18} /> All fidgets
       </Link>
 
@@ -256,7 +256,7 @@ function AddedDialog(props: {
           <Link to="/order" className="btn btn--lg btn--block">
             Review order ({props.cartCount})
           </Link>
-          <Link to="/" className="btn btn--lg btn--block btn--outline">
+          <Link to="/shop" className="btn btn--lg btn--block btn--outline">
             Keep browsing
           </Link>
         </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { Icon } from '../../components/Icon';
 import { Logo } from '../../components/Logo';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import { adminListOrders, resetDemoData } from '../../lib/api';
 import { useAsync } from '../../lib/useAsync';
 
@@ -30,9 +31,12 @@ export function AdminLayout() {
           </NavLink>
         </nav>
         <div className="admin-side__foot">
-          <Link to="/" className="admin-nav__link">
-            <Icon name="external" /> View shop
-          </Link>
+          <span className="admin-side__row">
+            <Link to="/shop" className="admin-nav__link">
+              <Icon name="external" /> View shop
+            </Link>
+            <ThemeToggle />
+          </span>
           <div className="admin-side__proto">
             <strong>Prototype</strong>
             <span>No sign-in yet. Data is stored in this browser only.</span>

@@ -14,6 +14,7 @@ import { CheckoutPage } from './pages/shop/CheckoutPage';
 import { ConfirmationPage } from './pages/shop/ConfirmationPage';
 import { HomePage } from './pages/shop/HomePage';
 import { ProductPage } from './pages/shop/ProductPage';
+import { ShopPage } from './pages/shop/ShopPage';
 
 function Root() {
   return (
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
         element: <ShopLayout />,
         children: [
           { path: '/', element: <HomePage /> },
+          { path: '/shop', element: <ShopPage /> },
           { path: '/products/:slug', element: <ProductPage /> },
           { path: '/order', element: <CartPage /> },
           { path: '/order/details', element: <CheckoutPage /> },

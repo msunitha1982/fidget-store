@@ -26,7 +26,7 @@ export function RouteError() {
           <button type="button" className="btn" onClick={() => window.location.reload()}>
             <Icon name="refresh" size={18} /> Reload page
           </button>
-          <a href="/" className="btn btn--outline">
+          <a href="/shop" className="btn btn--outline">
             Go to the shop
           </a>
         </div>

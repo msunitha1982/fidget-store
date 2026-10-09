@@ -2,7 +2,7 @@
 .admin {
   display: flex;
   min-height: 100vh;
-  background: var(--white);
+  background: var(--ground);
 }
 .admin-side {
   flex: none;
@@ -10,7 +10,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  background: var(--pink-5);
+  background: var(--tint);
   color: var(--ink);
   border-right: 1px solid var(--line);
   padding: 20px 14px;
@@ -57,20 +57,29 @@
   font-size: 15px;
 }
 .admin-nav__link:hover {
-  background: var(--pink-4);
+  background: var(--tint-strong);
   color: var(--ink);
 }
 .admin-nav__link.active {
-  background: var(--ink);
-  color: #fff;
+  background: var(--contrast);
+  color: var(--on-contrast);
 }
 .admin-nav__badge {
   margin-left: auto;
   font: 600 11px var(--font-mono);
   background: var(--accent);
-  color: var(--ink);
+  color: var(--on-accent);
   border-radius: var(--r-xs);
   padding: 3px 7px;
+}
+.admin-side__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.admin-side__row .admin-nav__link {
+  flex: 1;
 }
 .admin-side__foot {
   margin-top: auto;
@@ -264,8 +273,8 @@
   background: var(--line-soft);
 }
 .tab[aria-pressed='true'] {
-  background: var(--ink);
-  color: #fff;
+  background: var(--contrast);
+  color: var(--on-contrast);
 }
 .tab__count {
   font-size: 12px;
@@ -300,7 +309,7 @@
   border-bottom: 0;
 }
 .table tbody tr:hover {
-  background: var(--pink-5);
+  background: var(--tint);
 }
 .order-link {
   font-weight: 600;
@@ -325,7 +334,7 @@
   border-radius: 999px;
   border: 6px solid;
   margin-right: -6px;
-  box-shadow: 0 0 0 2px #fff;
+  box-shadow: 0 0 0 2px var(--surface);
 }
 .status-select {
   position: relative;
@@ -383,14 +392,14 @@
 .stepper-track__bar {
   height: 8px;
   border-radius: 4px;
-  background: var(--pink-4);
+  background: var(--tint-strong);
 }
 .stepper-track li.is-done,
 .stepper-track li.is-current {
   color: var(--ink);
 }
 .stepper-track li.is-done .stepper-track__bar {
-  background: var(--ink);
+  background: var(--contrast);
 }
 .stepper-track li.is-current .stepper-track__bar {
   background: var(--accent);
@@ -478,7 +487,7 @@
   cursor: pointer;
 }
 .check-pill:has(input:checked) {
-  background: var(--pink-3);
+  background: var(--tint-stronger);
   color: var(--ok-ink);
 }
 .check-pill input {
@@ -509,6 +518,7 @@
   margin-top: 12px;
 }
 .collect__icon {
+  color: var(--on-accent);
   width: 46px;
   height: 46px;
   border-radius: var(--r-sm);
@@ -584,7 +594,7 @@
   height: 18px;
   border-radius: 999px;
   margin-right: -4px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.24), 0 0 0 2px #fff;
+  box-shadow: inset 0 0 0 1px var(--swatch-ring), 0 0 0 2px var(--surface);
 }
 .switch {
   position: relative;
@@ -677,8 +687,8 @@
   width: 30px;
   height: 30px;
   border-radius: var(--r-sm);
-  background: var(--ink);
-  color: #fff;
+  background: var(--contrast);
+  color: var(--on-contrast);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -725,7 +735,7 @@
 .dropzone:hover,
 .dropzone.is-over {
   border-color: var(--ink);
-  background: #fff;
+  background: var(--surface);
 }
 .placeholder-pick {
   display: flex;
@@ -742,7 +752,7 @@
   gap: 6px;
 }
 .placeholder-pick .btn--ghost {
-  background: #fff;
+  background: var(--surface);
 }
 .photo-grid {
   display: flex;
@@ -777,12 +787,12 @@
   font-size: 11px;
   padding: 3px 6px;
   border-radius: var(--r-xs);
-  background: var(--ink);
-  color: #fff;
+  background: var(--contrast);
+  color: var(--on-contrast);
   border: 0;
 }
 .photo-tile__make {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass);
   color: var(--ink);
   font-weight: 600;
   cursor: pointer;
@@ -801,7 +811,7 @@
   height: 30px;
   border-radius: 999px;
   border: 0;
-  background: #fff;
+  background: var(--surface);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -945,8 +955,8 @@
   accent-color: var(--ink);
 }
 .part-toggle:has(input:checked) {
-  background: var(--ink);
-  color: #fff;
+  background: var(--contrast);
+  color: var(--on-contrast);
 }
 .part-toggle:has(input:checked) input {
   accent-color: var(--accent);
@@ -978,7 +988,7 @@
   width: 30px;
   height: 30px;
   border-radius: 999px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 0 1px var(--swatch-ring);
 }
 .add-color {
   display: inline-flex;
@@ -1024,7 +1034,7 @@
   padding: 0 10px 0 4px;
   border-radius: 999px;
   border: 0;
-  background: #fff;
+  background: var(--surface);
   box-shadow: inset 0 0 0 1px var(--line);
   font-size: 13px;
   font-weight: 500;
@@ -1037,7 +1047,7 @@
   width: 26px;
   height: 26px;
   border-radius: 999px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 0 1px var(--swatch-ring);
 }
 .color-adder__new {
   display: flex;
@@ -1054,7 +1064,7 @@
   padding: 4px;
   border: 1.5px solid var(--line-strong);
   border-radius: var(--r);
-  background: #fff;
+  background: var(--surface);
   cursor: pointer;
 }
 .add-group {
@@ -1077,7 +1087,7 @@
 }
 .radio-card:has(input:checked) {
   box-shadow: inset 0 0 0 2px var(--ink);
-  background: var(--pink-5);
+  background: var(--tint);
 }
 .radio-card:has(input:focus-visible) {
   outline: 3px solid var(--ink);
@@ -1162,10 +1172,10 @@
   padding: 0;
   border-radius: 999px;
   cursor: pointer;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 0 1px var(--swatch-ring);
 }
 .swatch-btn[aria-pressed='true'] {
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22), 0 0 0 2px #fff, 0 0 0 4px var(--ink);
+  box-shadow: inset 0 0 0 1px var(--swatch-ring), 0 0 0 2px var(--surface), 0 0 0 4px var(--ink);
 }
 .save-bar {
   position: sticky;
@@ -1178,7 +1188,7 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--glass);
   border-top: 1px solid var(--line);
 }
 .save-bar__status {
